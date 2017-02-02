@@ -15,7 +15,7 @@ def start_index(load):
 
 	if load == 0:
 		index_dict = searchable_index.tokenize('simplewiki.tsv')
-		io2.write_pkl('reverse_index.pkl')
+		io2.write_pkl(index_dict, 'reverse_index.pkl')
 	else:
 		io2.read_pkl('reverse_index.pkl')
 
