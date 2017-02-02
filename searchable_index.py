@@ -4,6 +4,7 @@ from collections import defaultdict
 
 from io2 import load_tsv
 from tagger import extract
+from logger import init_logger
 
 
 def _add_to_inverse_index(index_dict, tokens):
@@ -58,13 +59,23 @@ def tokenize(file_path):
 	Returns:
 		index_dict (dict{word:list(ids)}) : contains the inverse indices
 	"""
+	logger = init_logger()
 
+	logger.info("Will start loading the tsv corpus..")
 	articles = _load_content(file_path) # dict{id: text}
 	index_dict = defaultdict(list)
+	logger.info("Done loading corpus..")
+	i = 0
 
 	for article in articles:
+		i = i + 1
+		if i % 1000 == 0:
+			logger.info("Now processing at %s", i)
+
 		text = articles[article]
 		words = extract(text, "en")
 		index_dict = _add_to_inverse_index(index_dict, (article, words))
+
+	logger("Done.. successfuly created inverse index")
 
 	return index_dict

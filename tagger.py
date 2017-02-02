@@ -25,7 +25,7 @@ def extract(text, language):
 
 	for entity in entities:
 		for token in entity:
-			words.add(token)
+			words.add(token.lower())
 
 	words = list(words)
 
