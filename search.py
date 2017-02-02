@@ -5,9 +5,6 @@ import searchable_index
 
 LOAD = 0
 
-def __init__():
-	
-
 
 def _start_index():
 	"""
