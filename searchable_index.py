@@ -1,7 +1,10 @@
 # Abdelrahman M.
 
-from tagger import extract
 from collections import defaultdict
+
+from io import load_tsv
+from tagger import extract
+
 
 
 def _add_to_inverse_index(index_dict, tokens):
@@ -25,21 +28,6 @@ def _add_to_inverse_index(index_dict, tokens):
 	return index_dict
 
 
-def _load_tsv(file_path):
-    """
-	Read tsv files.
-	Args:
-		file_path (str): path to the file to be read
-	Returns:
-		list[list(str)]: content of the tsv file
-	"""
-	with open(file_path) as f:
-		reader = csv.reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
-		content = [row for row in reader]
-
-	return content
-
-
 def _load_content(file_path):
 	"""
 	Calls _load_tsv and organizes the data in a dict format
@@ -49,7 +37,7 @@ def _load_content(file_path):
 		articles_dict (dict{id: text}) : contains id: text of each row in the corpus
 
 	"""
-	two_dim = _load_tsv(file_path)
+	two_dim = load_tsv(file_path)
 	articles_dict = {}
 
 	for row in two_dim:
