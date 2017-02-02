@@ -2,9 +2,8 @@
 
 from collections import defaultdict
 
-from io import load_tsv
+from io2 import load_tsv
 from tagger import extract
-
 
 
 def _add_to_inverse_index(index_dict, tokens):
@@ -51,14 +50,16 @@ def _load_content(file_path):
 	return articles_dict
 
 
-def tokenize():
+def tokenize(file_path):
 	"""
 	Load and tokenize the tsv file
+	Args:
+		file_path(str): the tsv file path.
 	Returns:
 		index_dict (dict{word:list(ids)}) : contains the inverse indices
 	"""
 
-	articles = _load_content("simplewiki.tsv") # dict{id: text}
+	articles = _load_content(file_path) # dict{id: text}
 	index_dict = defaultdict(list)
 
 	for article in articles:
@@ -67,4 +68,3 @@ def tokenize():
 		index_dict = _add_to_inverse_index(index_dict, (article, words))
 
 	return index_dict
-

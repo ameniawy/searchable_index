@@ -4,6 +4,8 @@
 IO functions
 """
 
+import csv
+
 def load_tsv(file_path):
 	"""
 	Read tsv files.
