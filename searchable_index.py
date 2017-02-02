@@ -76,6 +76,6 @@ def tokenize(file_path):
 		words = extract(text, "en")
 		index_dict = _add_to_inverse_index(index_dict, (article, words))
 
-	logger("Done.. successfuly created inverse index")
+	logger.info("Done.. successfuly created inverse index")
 
 	return index_dict
